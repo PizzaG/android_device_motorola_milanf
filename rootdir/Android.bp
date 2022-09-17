@@ -1,0 +1,378 @@
+//
+// Copyright (C) 2022 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// Init scripts
+sh_binary {
+    name: "apanic_annotate.sh",
+    src: "bin/apanic_annotate.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "apanic_copy.sh",
+    src: "bin/apanic_copy.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "apanic_save.sh",
+    src: "bin/apanic_save.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "hardware_revisions.sh",
+    src: "bin/hardware_revisions.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.class_main.sh",
+    src: "bin/init.class_main.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.crda.sh",
+    src: "bin/init.crda.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.gbmods.sh",
+    src: "bin/init.gbmods.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-blair.sh",
+    src: "bin/init.kernel.post_boot-blair.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot-holi.sh",
+    src: "bin/init.kernel.post_boot-holi.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.kernel.post_boot.sh",
+    src: "bin/init.kernel.post_boot.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.mdm.sh",
+    src: "bin/init.mdm.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.mmi.block_perm.sh",
+    src: "bin/init.mmi.block_perm.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.mmi.boot.sh",
+    src: "bin/init.mmi.boot.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.mmi.mdlog-getlogs.sh",
+    src: "bin/init.mmi.mdlog-getlogs.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.mmi.modules.sh",
+    src: "bin/init.mmi.modules.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.mmi.shutdown.sh",
+    src: "bin/init.mmi.shutdown.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.mmi.touch.sh",
+    src: "bin/init.mmi.touch.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.mmi.usb.sh",
+    src: "bin/init.mmi.usb.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.mmi.wlan-getlogs.sh",
+    src: "bin/init.mmi.wlan-getlogs.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.oem.fingerprint.overlay.sh",
+    src: "bin/init.oem.fingerprint.overlay.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.oem.fingerprint2.sh",
+    src: "bin/init.oem.fingerprint2.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.oem.hw.sh",
+    src: "bin/init.oem.hw.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qcom.class_core.sh",
+    src: "bin/init.qcom.class_core.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qcom.coex.sh",
+    src: "bin/init.qcom.coex.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qcom.early_boot.sh",
+    src: "bin/init.qcom.early_boot.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qcom.efs.sync.sh",
+    src: "bin/init.qcom.efs.sync.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qcom.post_boot.sh",
+    src: "bin/init.qcom.post_boot.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qcom.sdio.sh",
+    src: "bin/init.qcom.sdio.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qcom.sensors.sh",
+    src: "bin/init.qcom.sensors.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qcom.sh",
+    src: "bin/init.qcom.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qcom.usb.sh",
+    src: "bin/init.qcom.usb.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qti.chg_policy.sh",
+    src: "bin/init.qti.chg_policy.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qti.display_boot.sh",
+    src: "bin/init.qti.display_boot.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qti.kernel.debug-blair.sh",
+    src: "bin/init.qti.kernel.debug-blair.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qti.kernel.debug-holi.sh",
+    src: "bin/init.qti.kernel.debug-holi.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qti.kernel.debug.sh",
+    src: "bin/init.qti.kernel.debug.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qti.kernel.sh",
+    src: "bin/init.qti.kernel.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qti.media.sh",
+    src: "bin/init.qti.media.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "init.qti.qcv.sh",
+    src: "bin/init.qti.qcv.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "pstore_annotate.sh",
+    src: "bin/pstore_annotate.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "qca6234-service.sh",
+    src: "bin/qca6234-service.sh",
+    vendor: true,
+}
+
+sh_binary {
+    name: "vendor_modprobe.sh",
+    src: "bin/vendor_modprobe.sh",
+    vendor: true,
+}
+
+// Init configuration files
+prebuilt_etc {
+    name: "init.mmi.charge_only.rc",
+    src: "etc/init.mmi.charge_only.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.mmi.chipset.rc",
+    src: "etc/init.mmi.chipset.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.mmi.debug.rc",
+    src: "etc/init.mmi.debug.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.mmi.diag.rc",
+    src: "etc/init.mmi.diag.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+//prebuilt_etc {
+//    name: "init.mmi.diag_mdlog.rc",
+//    src: "etc/init.mmi.diag_mdlog.rc",
+//    sub_dir: "init/hw",
+//    vendor: true,
+//}
+
+prebuilt_etc {
+    name: "init.mmi.overlay.rc",
+    src: "etc/init.mmi.overlay.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.mmi.rc",
+    src: "etc/init.mmi.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+//prebuilt_etc {
+//    name: "init.mmi.tcmd.rc",
+//    src: "etc/init.mmi.tcmd.rc",
+//    sub_dir: "init/hw",
+//    vendor: true,
+//}
+
+prebuilt_etc {
+    name: "init.mmi.usb.rc",
+    src: "etc/init.mmi.usb.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.mmi.wlan.rc",
+    src: "etc/init.mmi.wlan.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.qcom.factory.rc",
+    src: "etc/init.qcom.factory.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.qcom.rc",
+    src: "etc/init.qcom.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.qcom.usb.rc",
+    src: "etc/init.qcom.usb.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.qti.kernel.rc",
+    src: "etc/init.qti.kernel.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.qti.ufs.rc",
+    src: "etc/init.qti.ufs.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.target.rc",
+    src: "etc/init.target.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+// fstab
+prebuilt_etc {
+    name: "fstab.qcom",
+    src: "etc/fstab.qcom",
+    vendor: true,
+}

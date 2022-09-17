@@ -1,0 +1,16 @@
+#
+# Copyright (C) 2021 The Linux Foundation
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+
+on init
+    setprop sys.usb.configfs 1
+
+on fs
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+on property:ro.boot.usbcontroller=*
+    setprop sys.usb.controller ${ro.boot.usbcontroller}
+    write /sys/class/udc/${ro.boot.usbcontroller}/device/../mode peripheral

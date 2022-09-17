@@ -1,0 +1,91 @@
+on post-fs
+   # "Tap to wake" gesture
+   chown root input /sys/class/sensors/dt-gesture/enable
+   chmod 0660 /sys/class/sensors/dt-gesture/enable
+   chown root input /sys/class/sensors/dt-gesture/poll_delay
+   chmod 0660 /sys/class/sensors/dt-gesture/poll_delay
+
+on post-fs
+   chown system system /sys/devices/platform/soc/4804000.ufshc/clkgate_enable
+   chown system system /sys/devices/platform/soc/4804000.ufshc/devfreq/4804000.ufshc/min_freq
+
+
+#fps dual sensor
+service chipone_ident /vendor/bin/hw/chipone_ident
+    class late_start
+    user system
+    group system
+    oneshot
+    disabled
+
+service vendor.ident-fps-overlay-sh /vendor/bin/init.oem.fingerprint.overlay.sh
+    class core
+    user root
+    group drmrpc system
+    oneshot
+    disabled
+
+on post-fs-data
+    exec_start vendor.ident-fps-overlay-sh
+    chown system system /dev/fpsensor
+    chmod 0660 /dev/fpsensor
+    chown system system /sys/devices/platform/soc/soc:fm_wcn39x0/elna_en
+    # touch api
+    chown system system /sys/class/touchscreen/primary/interpolation
+    chmod 0660 /sys/class/touchscreen/primary/interpolation
+    chown system system /sys/class/touchscreen/primary/first_filter
+    chmod 0660 /sys/class/touchscreen/primary/first_filter
+    chown system system /sys/class/touchscreen/primary/edge
+    chmod 0660 /sys/class/touchscreen/primary/edge
+    # change permission for stylus
+    chown system system /sys/class/touchscreen/primary/palm_settings
+
+  # Change ownership and permission for cp-standalone factory testing
+  chown system system /sys/class/power_supply/cp-standalone/voltage_now
+  chown system system /sys/bus/iio/devices/iio:device5/in_index_sc8549_cp_enable_input
+  chmod 0644 /sys/class/power_supply/cp-standalone/voltage_now
+  chmod 0664 /sys/bus/iio/devices/iio:device5/in_index_sc8549_cp_enable_input
+
+on early-init
+   insmod /vendor/lib/modules/leds_aw99703.ko
+   insmod /vendor/lib/modules/leds_lm3697.ko
+   insmod /vendor/lib/modules/mcDrvModule.ko
+
+on init
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/nova_0flash_mmi.ko
+
+on boot && property:ro.vendor.mot.gki.path=5.4-gki
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/nfc_i2c.ko
+
+on late-init
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi_charger.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi_discrete_charger_class.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/sgm4154x_charger.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/bq2589x_charger.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi_discrete_charger.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/qpnp_adaptive_charge.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/tcpc_class.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/tcpc_rt1711h.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/tcpc_sgm7220.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/rt_pd_manager.ko
+
+on charger
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi_charger.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi_discrete_charger_class.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/sgm4154x_charger.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/bq2589x_charger.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi_discrete_charger.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/qpnp_adaptive_charge.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/tcpc_class.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/tcpc_rt1711h.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/tcpc_sgm7220.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/rt_pd_manager.ko
+
+service capsense_reset /vendor/bin/capsense_reset
+   class core
+   user system
+   group system input
+   disabled
+
+on property:sys.boot_completed=1
+    start capsense_reset
