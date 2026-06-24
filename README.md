@@ -10,9 +10,9 @@ Basic   | Spec Sheet
 SoC     | Qualcomm SM6375 Snapdragon 695 5G (6 nm)
 CPU     | Octa-core (2x2.2 GHz Kryo 660 Gold & 6x1.7 GHz Kryo 660 Silver)
 GPU     | Adreno 619
-Memory  | 4GB | 6GB| 8GB
-Shipped Android Version | Android 12, Official Upgraded To Android 13
-Storage | 128 GB | 256 GB (UFS 2.2)
+Memory  | 4GB / 6GB / 8GB
+Shipped Android Version | Android 12, Official Upgrade To Android 13
+Storage | 128 GB / 256 GB (UFS 2.2)
 Battery | Non-removable Li-Po 5000 mAh battery
 Display | IPS LCD, 120Hz, 6.8 inches, 1080 x 2460 pixels (~395 ppi density))
 Camera  | 50MP (Wide) + 8MP (Ultra-wide) + 16MP (Selfie)
