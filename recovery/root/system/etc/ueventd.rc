@@ -1,3 +1,10 @@
+#
+# Copyright (C) 2025 The Android Open Source Project
+# Copyright (C) 2025 The TWRP Open Source Project
+# Copyright (C) 2025 SebaUbuntu's TWRP Device Tree Generator
+# Copyright (C) 2019-Present A-Team Digital Solutions
+#
+
 firmware_directories /etc/firmware/ /odm/firmware/ /vendor/firmware/ /firmware/image/ /vendor/etc/motorola/firmware/
 uevent_socket_rcvbuf_size 16M
 

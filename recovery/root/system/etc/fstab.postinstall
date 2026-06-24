@@ -1,0 +1,9 @@
+#
+# Copyright (C) 2025 The Android Open Source Project
+# Copyright (C) 2025 The TWRP Open Source Project
+# Copyright (C) 2025 SebaUbuntu's TWRP Device Tree Generator
+# Copyright (C) 2019-Present A-Team Digital Solutions
+#
+
+system                       /postinstall ext4    ro,nosuid,nodev,noexec    slotselect_other,logical
+/dev/block/by-name/system    /postinstall ext4    ro,nosuid,nodev,noexec    slotselect_other

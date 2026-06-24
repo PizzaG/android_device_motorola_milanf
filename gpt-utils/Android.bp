@@ -1,0 +1,28 @@
+//
+// Copyright (C) 2026 The Android Open Source Project
+// Copyright (C) 2026 SebaUbuntu's TWRP Device Tree Generator
+// Copyright (C) 2019-Present A-Team Digital Solutions
+// Copyright (C) 2024 sosRR
+//
+
+cc_library {
+    name: "libgptutils.milanf",
+    vendor: true,
+    recovery_available: true,
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libz",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-D_BSG_FRAMEWORK_KERNEL_HEADERS",
+    ],
+    srcs: [
+        "gpt-utils.cpp",
+        "recovery-ufs-bsg.cpp",
+    ],
+    owner: "qti",
+    export_include_dirs: ["."],
+}

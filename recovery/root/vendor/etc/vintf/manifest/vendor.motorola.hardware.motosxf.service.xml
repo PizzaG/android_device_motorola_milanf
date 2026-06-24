@@ -1,6 +1,0 @@
-<manifest version="1.0" type="device">
-    <hal format="aidl">
-        <name>motorola.hardware.sxf</name>
-        <fqname>IMotoSxf/default</fqname>
-    </hal>
-</manifest>

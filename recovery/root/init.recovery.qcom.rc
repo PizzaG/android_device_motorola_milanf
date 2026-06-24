@@ -1,42 +1,30 @@
 #
-# Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
-# Copyright (C) 2020 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2026 The Android Open Source Project
+# Copyright (C) 2026 SebaUbuntu's TWRP Device Tree Generator
 # Copyright (C) 2019-Present A-Team Digital Solutions
+# Copyright (C) 2024 sosRR
 #
 
-import /init.recovery.qcom_decrypt.rc
 import /init.recovery.usb.rc
-
-on early-init
-    insmod /lib/modules/mmi_annotate.ko
-    insmod /lib/modules/mmi_info.ko
-    insmod /lib/modules/rt9426a_fg_mmi.ko
-    insmod /lib/modules/cw2217b_fg_mmi.ko
-    insmod /lib/modules/adapter_class.ko
-    insmod /lib/modules/mmi_charger.ko
-    insmod /lib/modules/mmi_discrete_charger_class.ko
-    insmod /lib/modules/sgm4154x_charger.ko
-    insmod /lib/modules/bq2589x_charger.ko
-    insmod /lib/modules/mmi_discrete_charger.ko
-    insmod /lib/modules/qpnp_adaptive_charge.ko
-    insmod /lib/modules/tcpc_class.ko
-    insmod /lib/modules/tcpc_sgm7220.ko
-    insmod /lib/modules/tcpc_rt1711h.ko
-    insmod /lib/modules/rt_pd_manager.ko
-    insmod /vendor/lib/modules/nova_0flash_mmi.ko
-    insmod /vendor/lib/modules/qpnp_adaptive_charge.ko
-    insmod /vendor/lib/modules/moto_f_usbnet.ko
-    insmod /vendor/lib/modules/utags.ko
+import /init.recovery.qcom_decrypt.rc
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
-    start load_ts_firmware
 
-service load_ts_firmware /system/bin/load_ts_firmware.sh
+    # Load kernel modules and ADSP firmware for PMIC
+    wait /sys/kernel/boot_adsp/boot
+    start runatboot
+    wait /sys/class/power_supply/battery
+
+on post-fs
+    start boot-hal-1-1
+
+on boot
+    start health-hal-2-1
+
+service runatboot /system/bin/runatboot.sh
     user root
     group root
-    disabled
     oneshot
     seclabel u:r:recovery:s0

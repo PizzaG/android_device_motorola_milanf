@@ -1,28 +1,57 @@
 #
-# Copyright (C) 2020 The Android Open Source Project
-# Copyright (C) 2020 The TWRP Open Source Project
-# Copyright (C) 2020 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2026 The Android Open Source Project
+# Copyright (C) 2026 SebaUbuntu's TWRP Device Tree Generator
 # Copyright (C) 2019-Present A-Team Digital Solutions
+# Copyright (C) 2024 sosRR
 #
 
-# mount point  fstype  device                             device2                flags
+# Boot Partitions
+/boot                   emmc        /dev/block/bootdevice/by-name/boot              flags=display="Boot";slotselect;backup=1;flashimg=1
+/dtbo                   emmc        /dev/block/bootdevice/by-name/dtbo              flags=display="DTBO";slotselect;backup=1;flashimg=1
+/vendor_boot            emmc        /dev/block/bootdevice/by-name/vendor_boot       flags=display="Vendor Boot";slotselect;backup=1;flashimg=1
+/vbmeta                 emmc        /dev/block/bootdevice/by-name/vbmeta            flags=display="VBMeta";slotselect;backup=1;flashimg=1
+/vbmeta_system          emmc        /dev/block/bootdevice/by-name/vbmeta_system     flags=display="System VBMeta";slotselect;backup=1;flashimg=1
+/logo                   emmc        /dev/block/bootdevice/by-name/logo              flags=display="Logo";slotselect;backup=1
+/misc                   emmc        /dev/block/bootdevice/by-name/misc              flags=display="Misc"
 
-/metadata      ext4    /dev/block/bootdevice/by-name/metadata                    flags=display="Metadata"
-/data          f2fs    /dev/block/bootdevice/by-name/userdata                    fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption
-/boot          emmc    /dev/block/bootdevice/by-name/boot                        flags=backup=1;flashimg=1;slotselect
-/dtbo          emmc    /dev/block/bootdevice/by-name/dtbo                        flags=backup=1;display="Dtbo";flashimg=1;slotselect
-/firmware      vfat    /dev/block/bootdevice/by-name/modem                       flags=display="Firmware";slotselect;mounttodecrypt;fsflags=ro
-/misc          emmc    /dev/block/bootdevice/by-name/misc                        flags=display="Misc"
-/modem         emmc    /dev/block/bootdevice/by-name/modem                       flags=backup=1;display="Modem";slotselect
-/bluetooth     emmc    /dev/block/bootdevice/by-name/bluetooth                   flags=backup=1;subpartitionof=/modem;slotselect
-/dsp           emmc    /dev/block/bootdevice/by-name/dsp                         flags=backup=1;subpartitionof=/modem;slotselect
-/efs1          emmc    /dev/block/bootdevice/by-name/modemst1                    flags=backup=1;display=EFS
-/efs2          emmc    /dev/block/bootdevice/by-name/modemst2                    flags=backup=1;subpartitionof=/efs1
-/efsc          emmc    /dev/block/bootdevice/by-name/fsc                         flags=backup=1;subpartitionof=/efs1
-/efsg          emmc    /dev/block/bootdevice/by-name/fsg                         flags=backup=1;subpartitionof=/efs1;slotselect
-/persist       ext4    /dev/block/bootdevice/by-name/persist                     flags=display="Persist"
-/persist_image emmc    /dev/block/bootdevice/by-name/persist                     flags=display="Persist";flashimg=1
+# Logical Partitions
+/system                 ext4        system                                          flags=display="System"
+/system                 erofs       system                                          flags=display="System"
+/system_ext             ext4        system_ext                                      flags=display="System EXT"
+/system_ext             erofs       system_ext                                      flags=display="System EXT"
+/product                ext4        product                                         flags=display="Product"
+/product                erofs       product                                         flags=display="Product"
+/vendor                 ext4        vendor                                          flags=display="Vendor"
+/vendor                 erofs       vendor                                          flags=display="Vendor"
 
-# Removable storage
-/usbstorage    auto    /dev/block/sdg1                    /dev/block/sdg         flags=fsflags=utf8;display="USB-OTG";storage;wipeingui;removable
-/external_sd   auto    /dev/block/mmcblk1p1               /dev/block/mmcblk1     flags=display=""MicroSD-Card"";storage;wipeingui;removable
+# Flashable Logical Partitions
+/system_image           emmc        /dev/block/bootdevice/by-name/system            flags=display="System Image";backup=1;flashimg=1
+/system_ext_image       emmc        /dev/block/bootdevice/by-name/system_ext        flags=display="System EXT Image";backup=1;flashimg=1
+/product_image          emmc        /dev/block/bootdevice/by-name/product           flags=display="Product Image";backup=1;flashimg=1
+/vendor_image           emmc        /dev/block/bootdevice/by-name/vendor            flags=display="Vendor Image";backup=1;flashimg=1
+
+# Data Partitions
+#/data                   f2fs        /dev/block/bootdevice/by-name/userdata          flags=fileencryption=ice:aes-256-cts
+/metadata               ext4        /dev/block/by-name/metadata                     flags=display="Metadata"
+
+# Firmware Partitions
+/persist                ext4        /dev/block/bootdevice/by-name/persist           flags=display="Persist"
+/persist_image          emmc        /dev/block/bootdevice/by-name/persist           flags=display="Persist";backup=1;flashimg=1
+/prodpersist            ext4        /dev/block/bootdevice/by-name/prodpersist       flags=display="Product Persist"
+/prodpersist_image      emmc        /dev/block/bootdevice/by-name/prodpersist       flags=display="Product Persist";backup=1;flashimg=1
+/firmware               ext4        /dev/block/bootdevice/by-name/modem             flags=display="Firmware";slotselect;fsflags="context=u:object_r:firmware_file:s0"
+/bt_firmware            ext4        /dev/block/bootdevice/by-name/bluetooth         flags=display="Bluetooth";slotselect;fsflags="context=u:object_r:bt_firmware_file:s0"
+/fsg                    ext4        /dev/block/bootdevice/by-name/fsg               flags=display="FSG";slotselect;fsflags="context=u:object_r:fsg_file:s0"
+/dsp                    ext4        /dev/block/bootdevice/by-name/dsp               flags=display="DSP";slotselect
+/modem_image            emmc        /dev/block/bootdevice/by-name/modem             flags=display="Modem";slotselect;backup=1;flashimg=1
+/bluetooth_image        emmc        /dev/block/bootdevice/by-name/bluetooth         flags=display="Bluetooth";slotselect;backup=1;flashimg=1
+/dsp_image              emmc        /dev/block/bootdevice/by-name/dsp               flags=display="DSP";slotselect;backup=1;flashimg=1
+/efs1                   emmc        /dev/block/bootdevice/by-name/modemst1          flags=display="EFS";backup=1
+/efs2                   emmc        /dev/block/bootdevice/by-name/modemst2          flags=backup=1;subpartitionof=/efs1
+/efsc                   emmc        /dev/block/bootdevice/by-name/fsc               flags=backup=1;subpartitionof=/efs1
+/efsg                   emmc        /dev/block/bootdevice/by-name/fsg               flags=backup=1;subpartitionof=/efs1
+
+# Removable Storage
+/external_sd            auto        /dev/block/mmcblk1p1    /dev/block/mmcblk1      flags=display="MicroSD-Card";storage;wipeingui;removable
+/usb_otg                auto        /dev/block/sdg1     /dev/block/sdg              flags=display="USB-Storage";storage;wipeingui;removable
+/storage                auto        /data/media/0                                   flags=display="Internal Storage";usermrf;backup=1;fsflags="bind";removable
